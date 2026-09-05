@@ -108,8 +108,8 @@ plt.plot(
     label=fr"Fit: $A + Bx^C$"
 )
 
-plt.xlabel("Number of sides")
-plt.ylabel("a")
+plt.xlabel("N Number of sides")
+plt.ylabel("C shape factor")
 
 plt.title("Extrapolated continuum value vs number of sides")
 
