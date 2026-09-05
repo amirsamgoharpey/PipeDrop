@@ -390,8 +390,17 @@ with the fitted parameters for 3 to 50 sides polygons :
 | $c$     |   -3.48 ± 0.03 |
 
 ![main question solution](png/polygon%20data.png)
----
 
+
+
+data set generator structure:
+```text
+1. generator.py (generates the polygons for the solver) -> creates the polygons folder and the n-gon folder
+2. solver.py ( a special version of main code for working with the generated polygons) -> creates the results.csv file
+3. fit.py (for the problem with pixelation) -> creates the extrapolated_results.csv
+4. finalregression.py (for the final regression) -> gives out the a,b,c and the graph of C(n)
+5. testfit.py (for checking the regression) -> gives out the relative error of using only odd data to find the even data and vice versa
+```
 
 ---
 
