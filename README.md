@@ -190,9 +190,10 @@ This allows PipeDrop to work with geometries that are difficult or impossible to
 
 ![Random pipe geometry](/png/random%20cross%20section/random.png)
 
-The corresponding velocity field is:
+The corresponding velocity field is(white pixels are the fastest and the black pixels are zero velocity):
 
 ![Random pipe velocity profile](/png/random%20cross%20section/velocityrandom.png)
+
 
 > resolution : 256
 
