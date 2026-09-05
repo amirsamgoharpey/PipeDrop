@@ -14,7 +14,7 @@ The main goal of the project is to investigate how the geometry of a pipe cross-
 
 ## Motivation
 
-The idea for this project started with a question in a hydrodynamics class two years ago:
+The idea for this project started with a question in a Fluid Mechanics class two years ago:
 
 > **What is the pressure drop for an arbitrary regular polygon?**
 
