@@ -188,11 +188,11 @@ This allows PipeDrop to work with geometries that are difficult or impossible to
 
 ### Example Geometry
 
-![Random pipe geometry](pngs/random.png)
+![Random pipe geometry](png/random cross section/random.png)
 
 The corresponding velocity field is:
 
-![Random pipe velocity profile](pngs/randomvelocity.png)
+![Random pipe velocity profile](png/random cross section/randomvelocity.png)
 
 
 ---
