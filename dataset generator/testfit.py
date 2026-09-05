@@ -5,17 +5,16 @@ from scipy.optimize import curve_fit
 
 
 # ============================================================
-# 1. خواندن CSV
+# 1. CSV
 # ============================================================
 
 df = pd.read_csv("extrapolated_results.csv")
 
-# مرتب کردن بر اساس تعداد اضلاع
 df = df.sort_values("Sides")
 
 
 # ============================================================
-# 2. تعریف مدل
+# 2. model
 # ============================================================
 # a(Sides) = A + B * Sides^C
 
@@ -24,19 +23,20 @@ def model(x, A, B, C):
 
 
 # ============================================================
-# 3. جدا کردن داده‌های فرد و زوج
+# 3. even or odd
 # ============================================================
 
-odd = df[df["Sides"] % 2 == 0]
-even = df[df["Sides"] % 2 == 1]
+odd = df[df["Sides"] % 2 == 1]
+even = df[df["Sides"] % 2 == 0]
 
+### if you want the vice versa just change the 1 in odd to 0 and the 0 in even to 1
 
-# داده‌های training
+# training data
 x_train = odd["Sides"].values.astype(float)
 y_train = odd["a"].values.astype(float)
 
 
-# داده‌های test
+# test data
 x_test = even["Sides"].values.astype(float)
 y_test = even["a"].values.astype(float)
 
@@ -46,16 +46,13 @@ print("Number of even data points:", len(x_test))
 
 
 # ============================================================
-# 4. حدس اولیه
+# 4. inital guess
 # ============================================================
 
-# حدس اولیه برای A
 A0 = y_train.max()
 
-# حدس اولیه برای C
 C0 = -1.0
 
-# حدس اولیه برای B
 B0 = y_train[0] - A0
 B0 = B0 / (x_train[0] ** C0)
 
@@ -69,7 +66,7 @@ print("C0 =", C0)
 
 
 # ============================================================
-# 5. Fit فقط روی داده‌های فرد
+# 5. Fiting on train data
 # ============================================================
 
 params, covariance = curve_fit(
@@ -84,17 +81,12 @@ params, covariance = curve_fit(
 A, B, C = params
 
 
-# خطای پارامترها
 parameter_errors = np.sqrt(np.diag(covariance))
 
 A_error = parameter_errors[0]
 B_error = parameter_errors[1]
 C_error = parameter_errors[2]
 
-
-# ============================================================
-# 6. محاسبه R² روی داده‌های training
-# ============================================================
 
 y_train_pred = model(x_train, A, B, C)
 
@@ -105,14 +97,14 @@ R2_train = 1 - SS_res / SS_tot
 
 
 # ============================================================
-# 7. پیش‌بینی داده‌های زوج
+# 6. test data prediction
 # ============================================================
 
 y_test_pred = model(x_test, A, B, C)
 
 
 # ============================================================
-# 8. محاسبه خطا روی داده‌های زوج
+# 7. error on prediction data
 # ============================================================
 
 errors = y_test - y_test_pred
@@ -134,7 +126,7 @@ mean_relative_error = np.mean(relative_errors)
 
 
 # ============================================================
-# 9. چاپ نتایج Fit
+# 8. results
 # ============================================================
 
 print("\n")
@@ -148,10 +140,6 @@ print(f"C = {C:.12f} ± {C_error:.12f}")
 
 print(f"\nR² (training) = {R2_train:.12f}")
 
-
-# ============================================================
-# 10. چاپ پیش‌بینی تک‌تک داده‌های زوج
-# ============================================================
 
 print("\n")
 print("=" * 80)
@@ -186,10 +174,6 @@ for side, actual, predicted, error, relative in zip(
     )
 
 
-# ============================================================
-# 11. خلاصه خطای prediction
-# ============================================================
-
 print("\n")
 print("=" * 60)
 print("TEST ERROR")
@@ -198,11 +182,6 @@ print("=" * 60)
 print(f"MAE                 = {MAE:.12f}")
 print(f"RMSE                = {RMSE:.12f}")
 print(f"Mean relative error = {mean_relative_error:.8f}%")
-
-
-# ============================================================
-# 12. ساخت منحنی Fit
-# ============================================================
 
 x_curve = np.linspace(
     x_train.min(),
@@ -217,15 +196,8 @@ y_curve = model(
     C
 )
 
-
-# ============================================================
-# 13. رسم نمودار
-# ============================================================
-
 plt.figure(figsize=(10, 6))
 
-
-# داده‌های فرد که برای Fit استفاده شدند
 plt.scatter(
     x_train,
     y_train,
@@ -233,7 +205,6 @@ plt.scatter(
 )
 
 
-# داده‌های زوج واقعی
 plt.scatter(
     x_test,
     y_test,
@@ -243,7 +214,6 @@ plt.scatter(
 )
 
 
-# منحنی Fit
 plt.plot(
     x_curve,
     y_curve,
@@ -251,7 +221,6 @@ plt.plot(
 )
 
 
-# پیش‌بینی‌های زوج
 plt.scatter(
     x_test,
     y_test_pred,
