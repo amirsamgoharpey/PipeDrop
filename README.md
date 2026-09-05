@@ -182,7 +182,7 @@ PipeDrop is designed to work with arbitrary cross-sectional geometries.
 
 The cross-section is provided as a grayscale image. Each pixel is classified as either fluid or solid according to its grayscale value.
 
-Pixels with grayscale values **above 128** are considered solid walls, while pixels with grayscale values **at or below 128** are treated as fluid.
+Pixels with grayscale values **above 128** are treated as fluid, while pixels with grayscale values **at or below 128** are considered solid walls.
 
 This allows PipeDrop to work with geometries that are difficult or impossible to describe analytically.
 
@@ -254,10 +254,10 @@ The computed shape factor for each resolution and the time taken is recorded bel
 
 |  Grid Resolution | Computed `C_N` | time(s) |
 | ---------------: | -------------: | -------------: |
-|  `256` |            24.7862137 |             0.4      |
-|  `512` |            24.9379812 |            3.0         |
-|  `1024` |           25.0484250 |           11.5          |
-| `2048` |            25.0831427 |          99.6           |
+|  `256`  |            24.7862137 |                0.4      |
+|  `512`  |            24.9379812 |             3.0         |
+|  `1024` |            25.0484250 |           11.5          |
+| `2048`  |            25.0831427 |          99.6           |
 
 The values of C are then fitted as a function of the grid resolution $N$.
 
@@ -300,9 +300,9 @@ The final validation therefore compares the **extrapolated infinite-resolution v
 | Quantity                             |              Value |
 | ------------------------------------ | -----------------: |
 | Analytical $C$                       | $8\pi \approx 25.132741$ |
-| Regression model                     |      $C(N)=a+bN^c$ |
-| Extrapolated $C_{\mathrm{expected}}$ |                25.15558 |
-| Relative error                       |               0.09% |
+| Regression model                     |            $C(N)=a+bN^c$ |
+| Extrapolated $C_{\mathrm{expected}}$ |                 25.15558 |
+| Relative error                       |                    0.09% |
 
 This procedure provides both a numerical convergence study and an estimate of the accuracy of the solver in the infinite-resolution limit.
 
@@ -417,7 +417,7 @@ data set generator structure:
 ### Installation
 
 ```bash
-git clone https://github.com/[USERNAME]/PipeDrop.git
+git clone https://github.com/amirsamgoharpey/PipeDrop.git
 cd PipeDrop
 
 python -m venv .venv
@@ -441,7 +441,7 @@ The current version has several limitations:
 ---
 
 
-## Refrences
+## References
 
 1. Landau and Lifshitz, *Fluid Mechanics*
 
