@@ -66,7 +66,7 @@ where $\rho$ is the fluid density, $p$ is the pressure, and $\mu$ is the dynamic
 
 For steady, fully developed flow through a straight pipe, the velocity is assumed to have only an axial component:
 
-$$\mathbf{u} = \begin{pmatrix} 0 \\ 0 \\ u(x,y) \end{pmatrix}$$
+$$\mathbf{u} = \begin{pmatrix} 0 ,\\ 0 ,\\ u(x,y) \end{pmatrix}$$
 
 Here, $x$ and $y$ describe the pipe cross-section, while $u(x,y)$ is the axial velocity.
 
