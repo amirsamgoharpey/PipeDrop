@@ -87,9 +87,13 @@ $$\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = \frac{
 
 Since the pressure gradient is constant for fully developed flow,
 
-$$\nabla_\perp^2 u = \frac{1}{\mu}\frac{dp}{dz}$$
+$$\nabla_\perp^2 u = \frac{1}{\mu}\frac{dp}{dz} = \frac{-G}{\mu}$$
 
 where
+
+$$ G = -\frac{dp}{dz}$$
+
+and
 
 $$\nabla_\perp^2 = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}$$
 
@@ -104,14 +108,6 @@ $$u(x,y)=0 \qquad \text{on the boundary}$$
 Once the velocity field is obtained, the volumetric flow rate is calculated from
 
 $$Q=\int_A u(x,y)\,dA$$
-
-The pressure drop over a pipe of length $L$ is
-
-$$\Delta P = P_{\mathrm{in}}-P_{\mathrm{out}} = -\frac{dp}{dz}L$$
-
-Thus, the computational problem can be summarized as
-
-$$\boxed{\nabla_\perp^2 u = \frac{1}{\mu}\frac{dp}{dz}}$$
 
 with
 
@@ -129,7 +125,7 @@ To compare different geometries and image resolutions independently of this arbi
 
 The pressure gradient is related to the volumetric flow rate by
 
-$$\frac{dp}{dz} = C\frac{\mu Q}{A^2}$$
+$$G = C\frac{\mu Q}{A^2}$$
 
 where
 
@@ -140,7 +136,7 @@ where
 
 Therefore,
 
-$$\boxed{C = \frac{A^2}{\mu Q}\frac{dp}{dz}}$$
+$$\boxed{C = \frac{A^2}{\mu Q}G}$$
 
 The shape factor depends only on the geometry of the cross-section under the assumptions of steady, incompressible, fully developed, laminar flow.
 
@@ -304,7 +300,6 @@ The final validation therefore compares the **extrapolated infinite-resolution v
 | Extrapolated $C_{\mathrm{expected}}$ |                 25.15558 |
 | Relative error                       |                    0.09% |
 
-This procedure provides both a numerical convergence study and an estimate of the accuracy of the solver in the infinite-resolution limit.
 
 ---
 
@@ -322,18 +317,17 @@ The geometry generator creates regular polygons with different numbers of sides 
 The main parameters varied during dataset generation are:
 
 * Number of polygon sides \(n\)
-* Cross-sectional area
 * Grid resolution
 
 The generated data can then be analyzed to investigate the relationship between \(C\) and \(n\).
 
 ### Data Analysis
 
-Matplotlib is used to visualize and analyze the generated dataset. the computed values of $C$ can be plotted as a function of the number of polygon sides:
+Matplotlib is used to visualize and analyze the generated dataset. The computed values of $C$ can be plotted as a function of the number of polygon sides:
 
 $C=C(n)$
 
-This plot make it possible to identify the trend we are looking for. then The analysis allow the numerical data to be compared with the regression model to determine whether the proposed regression form is appropriate.
+This plot makes it possible to identify the trend we are looking for. then The analysis allows the numerical data to be compared with the regression model to determine whether the proposed regression form is appropriate.
 
 ### Final Regression
 
@@ -394,7 +388,7 @@ with the fitted parameters for 3 to 50 sides polygons :
 
 
 
-data set generator structure:
+Dataset generator structure:
 ```text
 1. generator.py (generates the polygons for the solver) -> creates the polygons folder and the n-gon folder
 2. solver.py ( a special version of main code for working with the generated polygons) -> creates the results.csv file
