@@ -198,13 +198,12 @@ The corresponding velocity field is(white pixels are the fastest and the black p
 
 ## Results
 
-The solver calculates the velocity distribution over the pipe cross-section and uses it to determine the corresponding flow rate, pressure gradient, and shape factor.
+The solver calculates the velocity distribution over the pipe cross-section and uses it to determine the corresponding flow rate and shape factor.
 
 The main outputs are:
 
 * **Velocity field** — saved as a PNG image
 * $Q$ — volumetric flow rate in computational units
-* $\frac{dp}{dz}$ — pressure gradient in computational units
 * $C$ — dimensionless shape factor
 
 ### Example Result
