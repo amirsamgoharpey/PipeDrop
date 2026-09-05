@@ -389,40 +389,9 @@ with the fitted parameters for 3 to 50 sides polygons :
 | $b$    |   430  ±  10|
 | $c$     |   -3.48 ± 0.03 |
 
+![main question solution](png/polygon%20data.png)
 ---
 
-## Project Structure
-
-```text
-PipeDrop/
-│
-├── solver/
-│   ├── ...
-│   └── ...
-│
-├── validation/
-│   ├── ...
-│   └── ...
-│
-├── dataset/
-│   ├── ...
-│   └── ...
-│
-├── geometry/
-│   ├── ...
-│   └── ...
-│
-├── examples/
-│   ├── ...
-│   └── ...
-│
-├── tests/
-│   └── ...
-│
-├── requirements.txt
-├── README.md
-└── LICENSE
-```
 
 ---
 
