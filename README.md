@@ -107,7 +107,7 @@ $$u(x,y)=0 \qquad \text{on the boundary}$$
 
 Once the velocity field is obtained, the volumetric flow rate is calculated from
 
-$$Q=\int_A u(x,y)\,dA$$
+$$Q=\int_A u(x,y)\dA$$
 
 with
 
