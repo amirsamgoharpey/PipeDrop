@@ -214,19 +214,19 @@ print("RMS residual =", residual_rms)
 
 
 # ============================================================
-# 11. Calculate Q1
+# 11. Calculate Q
 # ============================================================
 
-Q1 = np.sum(u[fluid]) * h**2
+Q = np.sum(u[fluid]) * h**2
 
-print("\nQ1 flow rate =", Q1)
+print("\nQ flow rate =", Q)
 
 
 # ============================================================
 # 12. Calculate shape coefficient
 # ============================================================
 
-C_shape = A**2 / Q1
+C_shape = A**2 / Q
 
 print("Shape coefficient C =", C_shape)
 
